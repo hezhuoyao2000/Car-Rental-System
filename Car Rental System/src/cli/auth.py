@@ -13,9 +13,11 @@ def login(connection):
             if user.user_role == "customer":
                 from src.cli.customer_menu import customer_menu
                 customer_menu(connection)
+                break
             elif user.user_role == "admin":
                 from src.cli.admin_menu import admin_menu
                 admin_menu(connection)
+                break
         else:
             print("Invalid username or password.")
             retry = input("Enter 1 to try again or 2 to abort: ").strip()
