@@ -1,8 +1,8 @@
 from datetime import datetime
 
 class User_operations:
-    @staticmethod
 
+    @staticmethod
     def add_user(connection, username, password, user_role, first_name=None, last_name=None, phone_number=None):
 
         sql = '''INSERT INTO users(username, password, user_role, first_name, last_name, phone_number)
@@ -19,12 +19,13 @@ class User_operations:
         cursor.execute(sql, (username,))
         return cursor.fetchone()
 
+
 class Car_Operations:
     @staticmethod
-    def add_car(connection, make, model, manufacture_year, mileage, availability):
-        sql = '''INSERT INTO cars(make, model, manufacture_year, mileage, availability) VALUES(?,?,?,?,?)'''
+    def add_car(connection, make, model, manufacture_year, mileage, availability, daily_rent):
+        sql = '''INSERT INTO cars(make, model, manufacture_year, mileage, availability, daily_rent) VALUES(?,?,?,?,?,?)'''
         cur = connection.cursor()
-        cur.execute(sql, (make, model, manufacture_year, mileage, availability))
+        cur.execute(sql, (make, model, manufacture_year, mileage, availability, daily_rent))
         connection.commit()
         return cur.lastrowid
 
@@ -53,14 +54,19 @@ class Car_Operations:
         cur.execute(sql, (car_id,))
         return cur.fetchone()
 
+
+
+
+class Booking_Operations:
     @staticmethod
     def get_available_cars(connection):
-        sql = '''SELECT * FROM cars WHERE is_available = TRUE'''
+        sql = '''SELECT car_id, make, model, manufacture_year, mileage, availability, daily_price 
+                 FROM cars 
+                 WHERE availability = 1'''
         cur = connection.cursor()
         cur.execute(sql)
         return cur.fetchall()
 
-class Booking_Operations:
     @staticmethod
     def create_booking(connection, customer_id, car_id, start_time, end_time, total_cost):
         sql = '''INSERT INTO bookings(customer_id, car_id, start_time, end_time, total_cost)

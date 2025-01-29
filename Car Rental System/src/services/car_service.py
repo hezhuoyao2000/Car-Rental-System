@@ -1,9 +1,12 @@
 from src.database.database_operations import Car_Operations
 
 class Car_Service:
+
+
+    """used in admin_menu"""
     @staticmethod
-    def add_car(connecion, make, model, manufacture_year, milage, availability):
-        return Car_Operations.add_car(connecion, make, model, manufacture_year, milage, availability)
+    def add_car(connecion, make, model, manufacture_year, milage, daily_rent, availability):
+        return Car_Operations.add_car(connecion, make, model, manufacture_year, milage, availability, daily_rent)
 
     @staticmethod
     def remove_car(connecion, car_id):
@@ -17,10 +20,4 @@ class Car_Service:
     def get_car_details(connecion, car_id):
         return Car_Operations.get_car_details(connecion, car_id)
 
-    @staticmethod
-    def book_car(connecion, car_id, customer_id, start_date, end_date):
-        pass
 
-    """@staticmethod
-    def view_rental_details():
-        pass"""

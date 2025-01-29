@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS cars (
     model TEXT NOT NULL,
     manufacture_year INTEGER NOT NULL,
     mileage REAL NOT NULL,
-    availability BOOLEAN DEFAULT TRUE
+    availability BOOLEAN DEFAULT TRUE,
+    daily_rent REAL NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS bookings (

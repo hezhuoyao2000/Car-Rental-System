@@ -15,8 +15,9 @@ def admin_menu(connection):
             model = input("Enter car model: ")
             manufacture_year = input("Enter car manufacture year: ")
             mileage = input("Enter car mileage: ")
+            daily_rent = input("Enter car daily rent: ")
 
-            if Car_Service.add_car(connection, make, model, manufacture_year, mileage, availability = True):
+            if Car_Service.add_car(connection, make, model, manufacture_year, mileage, daily_rent, availability = True):
                 print("Car added successfully!")
             else:
                 print("Failed to add car.")
