@@ -7,14 +7,14 @@
   (3)in __customer_menu.py file, changed __customer_menu(connection)__ function, replace break with return in choice == “4”.  
 
 
-2. optimize the admin_menu(connection) function in admin_menu.py file.
+2. optimize the admin_menu(connection) function in admin_menu.py file.  
 
   (1)choice == “3”.  
-  build press enter to keep current function, and use 1 and 0 to select the availability of the car
+  build press enter to keep current function, and use 1 and 0 to select the availability of the car  
 
 
-##update 2025.1.29
-3.  built the feature Browse Available Cars
+##update 2025.1.29  
+3.  built the feature Browse Available Cars  
 
   (1)in __customer_menu__ file, in __customer_menu__ function, added the feature __Browse Available Cars__ .  
   (2)in file __customer_memu.py__, Improved the __customer_menu(connection)__ function under __choice == “1”__.  
@@ -32,15 +32,15 @@
   (5)in __database_operations.py__, added __daily_rent__ to __add_car()__ function  
 
 
-##update 2025.1.30
-5. Added the ability to recognize user ids when a user makes a reservation.
-(1)in __auth.py__ file , __login(connection)__ function, add __global current_user_id__ and __current_user_id = user.user_id__
-(2)in __customer_menu.py__ file, in __choice == "2":__, add __customer_id = current_user_id__
+##update 2025.1.30  
+5. Added the ability to recognize user ids when a user makes a reservation.  
+(1)in __auth.py__ file , __login(connection)__ function, add __global current_user_id__ and __current_user_id = user.user_id__  
+(2)in __customer_menu.py__ file, in __choice == "2":__, add __customer_id = current_user_id__  
 
-6. fixed the table showing ability in __customer_menu__
-(1)in __customer_menu.py__ file, in __choice == "1":__, add __daily_rent__
+6. fixed the table showing ability in __customer_menu__  
+(1)in __customer_menu.py__ file, in __choice == "1":__, add __daily_rent__  
 
-7. built the ability __View Rental Details__
-(1)in __customer_menu.py__ file, in __choice == "3"__, added the code of building a table to show all rental details
-(2)changed status of booking from 2 status to 3 status, and showing it in table
+7. built the ability __View Rental Details__  
+(1)in __customer_menu.py__ file, in __choice == "3"__, added the code of building a table to show all rental details  
+(2)changed status of booking from 2 status to 3 status, and showing it in table  
 
