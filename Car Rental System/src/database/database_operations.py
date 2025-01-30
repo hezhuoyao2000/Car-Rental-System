@@ -47,7 +47,7 @@ class Car_Operations:
 
     @staticmethod
     def get_car_details(connection, car_id):
-        sql = '''SELECT make, model, manufacture_year, mileage, availability 
+        sql = '''SELECT car_id, make, model, manufacture_year, mileage, availability , daily_rent 
                  FROM cars 
                  WHERE car_id = ?'''
         cur = connection.cursor()
@@ -55,12 +55,10 @@ class Car_Operations:
         return cur.fetchone()
 
 
-
-
 class Booking_Operations:
     @staticmethod
     def get_available_cars(connection):
-        sql = '''SELECT car_id, make, model, manufacture_year, mileage, availability, daily_price 
+        sql = '''SELECT car_id, make, model, manufacture_year, mileage, availability, daily_rent 
                  FROM cars 
                  WHERE availability = 1'''
         cur = connection.cursor()
@@ -68,11 +66,11 @@ class Booking_Operations:
         return cur.fetchall()
 
     @staticmethod
-    def create_booking(connection, customer_id, car_id, start_time, end_time, total_cost):
-        sql = '''INSERT INTO bookings(customer_id, car_id, start_time, end_time, total_cost)
-                 VALUES(?,?,?,?,?)'''
+    def create_booking(connection: object, customer_id: object, car_id: object, start_time: object, end_time: object, total_cost: object, status: object) -> object:
+        sql = '''INSERT INTO bookings(customer_id, car_id, start_time, end_time, total_cost, status)
+                 VALUES(?,?,?,?,?,?)'''
         cur = connection.cursor()
-        cur.execute(sql, (customer_id, car_id, start_time, end_time, total_cost))
+        cur.execute(sql, (customer_id, car_id, start_time, end_time, total_cost, status))
         connection.commit()
         return cur.lastrowid
 
@@ -82,3 +80,8 @@ class Booking_Operations:
         cur = connection.cursor()
         cur.execute(sql, (customer_id,))
         return cur.fetchall()
+
+
+"""class admin_Booking_management_Operations:
+    @staticmethod
+    def approve_booking(connection, booking_id):"""

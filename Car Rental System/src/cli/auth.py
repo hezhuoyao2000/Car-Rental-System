@@ -1,14 +1,17 @@
 from src.services.user_service import user_Service
 
-def login(connection):
+current_user_id = None
 
+def login(connection):
+                                                                            #function to handle login process of customer and admin
+    global current_user_id
     while True:
-        username = input("Enter your username: ")
+        username = input("Enter your username: ")                           #take input from user for username and password
         password = input("Enter your password: ")
         user = user_Service.login(connection, username, password)
         if user:
             print("Login successful!")
-            #print(f"User role: {user.user_role}")      #for test 
+            current_user_id = user.user_id
 
             if user.user_role == "customer":
                 from src.cli.customer_menu import customer_menu
@@ -20,19 +23,20 @@ def login(connection):
                 break
         else:
             print("Invalid username or password.")
-            retry = input("Enter 1 to try again or 2 to abort: ").strip()
+            retry = input("Enter 1 to try again or 2 to abort: ").strip()        #choose to retry or abort login
             if retry == '2':
                 print("Login Abandoned.")
                 break
 
 
 def register(connection):
-    username = input("Enter your username: ")
+                                                                            #function to handle registration process of customer and admin
+    username = input("Enter your username: ")                               #take input from user for username, password, phone number, and role
     password = input("Enter your password: ")
     phone_number = input("Enter phone number: ")
 
     while True:
-        role_input = input("Enter your role (1 for admin, 2 for customer): ")
+        role_input = input("Enter your role (1 for admin, 2 for customer): ")       #choose role of user
 
         if role_input == "1":
             user_role = "admin"

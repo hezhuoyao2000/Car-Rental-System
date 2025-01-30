@@ -10,14 +10,14 @@ def main(connection):
     while True:
         display_main_menu(connection)
         choice = input("Enter your choice: ")
-        if choice == "1":
+        if choice == "1":                                           # Login
             login(connection)
             print("Logged in the system.")
 
-        elif choice == "2":
+        elif choice == "2":                                         # Register
             register(connection)
 
-        elif choice == "3":
+        elif choice == "3":                                         # Exit the system
             print("Logged out the system.")
             break
         else:

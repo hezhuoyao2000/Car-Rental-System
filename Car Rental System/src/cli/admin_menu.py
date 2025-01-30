@@ -10,8 +10,8 @@ def admin_menu(connection):
 
         choice = input("\nEnter your choice(number1-4): ")
 
-        if choice == "1":
-            make = input("Enter car make: ")
+        if choice == "1":                                                   # Add a Cars
+            make = input("Enter car make: ")                                # input all information of car
             model = input("Enter car model: ")
             manufacture_year = input("Enter car manufacture year: ")
             mileage = input("Enter car mileage: ")
@@ -22,35 +22,35 @@ def admin_menu(connection):
             else:
                 print("Failed to add car.")
 
-        elif choice == "2":
+        elif choice == "2":                                                 # Remove a Car
             car_id = input("Enter car id to remove: ")
             if Car_Service.remove_car(connection, car_id):
                 print("Car removed successfully!")
             else:
                 print("Failed to remove car.")
 
-        elif choice == "3":
-            car_id = input("Enter car id to update: ")
+        elif choice == "3":                                                 # Update car details
+            car_id = input("Enter car id to update: ")                      # Selecting the target car using the ID
             current_car = Car_Service.get_car_details(connection, car_id)
             if not current_car:
                 print("Car not found.")
                 continue
 
-            print("\nCurrent Car Details:")
+            print("\nCurrent Car Details:")                                 # Displaying the current car details before update
             print(f"Make: {current_car[0]}")
             print(f"Model: {current_car[1]}")
             print(f"Manufacture Year: {current_car[2]}")
             print(f"Mileage: {current_car[3]}")
             print(f"Availability: {current_car[4]}")
 
-            car_id = input("Enter car id to update: ")
+            car_id = input("Enter car id to update: ")                      # Input new details for the car
             make = input("Enter new make (press enter to keep current): ")
             model = input("Enter new model (press enter to keep current): ")
             manufacture_year = input("Enter new manufacture year (press enter to keep current): ")
             mileage = input("Enter new mileage (press enter to keep current): ")
             availability_input  = input("Enter new availability (Please enter number 1 or 0 for True/False,press enter to keep current): ")
 
-            if not make:
+            if not make:                                                   # If no input is given(or if user enters nothing), keep the current value
                 make = current_car[0]
             if not model:
                 model = current_car[1]
@@ -73,7 +73,20 @@ def admin_menu(connection):
             else:
                 print("Failed to update car details.")
 
-        elif choice == "4":
+
+
+
+
+
+
+
+
+
+
+
+
+
+        elif choice == "4":                                                 # Logout
             print("Logging out...")
             return
         else:
