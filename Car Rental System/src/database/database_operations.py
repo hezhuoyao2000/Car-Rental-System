@@ -38,10 +38,10 @@ class Car_Operations:
         return cur.rowcount
 
     @staticmethod
-    def update_car_details(connection, car_id, make, model, manufacture_year, mileage, availability):
-        sql = '''UPDATE cars SET make =?, model =?, manufacture_year =?, mileage =?, availability =? WHERE car_id = ?'''
+    def update_car_details(connection, car_id, make, model, manufacture_year, mileage, availability, daily_rent):
+        sql = '''UPDATE cars SET make =?, model =?, manufacture_year =?, mileage =?, availability =?, daily_rent = ? WHERE car_id = ?'''
         cur = connection.cursor()
-        cur.execute(sql, (make, model, manufacture_year, mileage, availability, car_id))
+        cur.execute(sql, (make, model, manufacture_year, mileage, availability, daily_rent, car_id))
         connection.commit()
         return cur.rowcount
 

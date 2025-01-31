@@ -12,7 +12,7 @@ def create_connection(db_file):
         print(e)
     return connection
 
-def initialize_database(connection):
+def initialize_database(connection):                                     # Initializing the database with the schema.sql file
     """initializing the database with the schema.sql file """
     schema_path = os.path.join(os.path.dirname(__file__), 'schema.sql')  # Dynamic construction of paths
     with open(schema_path, 'r') as f:

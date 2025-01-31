@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS bookings (
     start_time DATETIME NOT NULL,
     end_time DATETIME NOT NULL,
     total_cost REAL NOT NULL,
-    status TEXT DEFAULT 'Pending',
+    status TEXT DEFAULT 'pending',
     FOREIGN KEY (customer_id) REFERENCES users(user_id),
     FOREIGN KEY (car_id) REFERENCES cars(car_id)
 );

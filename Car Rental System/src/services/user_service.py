@@ -1,5 +1,5 @@
-from src.database.database_operations import User_operations
-from src.models.user import User
+from database.database_operations import User_operations
+from models.user import User
 
 class user_Service:
     @staticmethod

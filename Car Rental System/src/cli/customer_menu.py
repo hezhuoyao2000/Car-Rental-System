@@ -1,7 +1,7 @@
-from src.services import car_service
-from src.services.booking_service import CustomerService
+from services import car_service
+from services.booking_service import CustomerService
 from datetime import datetime
-from src.cli.auth import current_user_id
+from cli.auth import current_user_id
 
 def customer_menu(connection):
     while True:
@@ -13,32 +13,23 @@ def customer_menu(connection):
 
         choice = input("\nEnter your choice(number 1-4): ")
 
+
+
         if choice == "1":                       # Browse Available Cars
-            try:
-                available_cars = CustomerService.get_available_cars(connection)
 
-                if available_cars:              # show the table of available cars
-                    print("\nAvailable Cars:")
-                    print("-" * 80)
-                    print(f"{'ID':<5}{'Make':<15}{'Model':<15}{'Year':<10}{'Mileage':<10}{'Price/Day':<10}{'Availability':<15}")
-                    print("-" * 80)
-                    for car in available_cars:
-                        car_id, make, model, year, mileage, availability, daily_rent = car
-                        print(
-                            f"{car_id:<5}{make:<15}{model:<15}{year:<10}{mileage:<10}{daily_rent:<10}{'Available' if availability else 'Not Available':<15}")
-                    print("-" * 80)
-                else:
-                    print("\nNo available cars found.")
-
-            except Exception as e:
-                print(f"Error fetching available cars: {e}")
-
+            CustomerService.display_available_cars(connection)
 
         elif choice == "2":                     # Book a Car
             try:
+                CustomerService.display_available_cars(connection)
+
                 car_id = input("Enter the car ID you want to book: ")                # input the target car ID
-                start_date = input("Enter start date (YYYY-MM-DD): ")                # choose the start adn end date for the rental
-                end_date = input("Enter end date (YYYY-MM-DD): ")
+                try:
+                    start_date = input("Enter start date (YYYY-MM-DD): ")                # choose the start adn end date for the rental
+                    end_date = input("Enter end date (YYYY-MM-DD): ")
+                except ValueError:
+                    print("Invalid date format. Please enter a date in YYYY-MM-DD format.")
+                    continue
 
                 start_date = datetime.strptime(start_date, "%Y-%m-%d")        # convert the input date to datetime object
                 end_date = datetime.strptime(end_date, "%Y-%m-%d")
@@ -73,7 +64,7 @@ def customer_menu(connection):
                 print(f"Error booking car: {e}")
 
 
-        elif choice == "3":
+        elif choice == "3":                             # View Rental Details
             try:
                 rental_details = CustomerService.get_rental_details(connection, current_user_id)
                 if rental_details:

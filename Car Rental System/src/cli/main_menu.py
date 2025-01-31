@@ -1,4 +1,4 @@
-from src.cli.auth import login, register
+from cli.auth import login, register
 
 def display_main_menu(connection):
     print("\n=== Car Rental System ===")
@@ -9,7 +9,7 @@ def display_main_menu(connection):
 def main(connection):
     while True:
         display_main_menu(connection)
-        choice = input("Enter your choice: ")
+        choice = input("Enter your choice number(1-3): ")
         if choice == "1":                                           # Login
             login(connection)
             print("Logged in the system.")

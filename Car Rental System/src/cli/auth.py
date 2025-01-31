@@ -1,4 +1,4 @@
-from src.services.user_service import user_Service
+from services.user_service import user_Service
 
 current_user_id = None
 
